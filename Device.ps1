@@ -1,27 +1,16 @@
 class Device {
-    [string]$Brand
-    [string]$Model
-    [string]$VendorSku
+    [string]$Brand =654
+    [string]$Model = 124556
+    [string]$VendorSku = 125345
 }
 
 class Rack {
-    # [string]$Brand
-    # [string]$Model
-    # [string]$VendorSku
-    # [string]$AssetId
-    # [Device[]]$Devices = [Device[]]::new(8)
-    [string]$SomeString
-    [int]$Height
-    [int]$Width
+    [string]$SomeString = 1245
+    [int]$Height = 1254
+    [int]$Width = 12456
     [Device[]]$Devices = [Device[]]::new(8)
 }
 
-
 $rack = [Rack]::new()
-$rack
-
-$device = [Device]::new()
-# $device.Brand = "Microsoft"
-# $device.Model =  "Model One"
-# $device.VendorSku = "WTF is SKU?"
-$device
+$rack.Devices[0] = [Device]::new()
+$rack | Format-Table
