@@ -15,12 +15,6 @@ let fields2ReturnIncident = "number,short_description,sys_created_on,opened_by";
 const sysId2FindChangeRequest = "9ee1b13dc6112271007f9d0efdb69cd0";
 let fields2ReturnChangeRequest = "number,short_description,sys_created_on,opened_by";
 
-//opened_by.value=77ad8176731313005754660c4cf6a7de
-//number,short_description
-
-//let fields2ReturnIncident = "name,short_description";
-//let sysparmFieldsIncident = "&sysparm_fields=" + fields2Return;
-
 var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 let request = new XMLHttpRequest();
 
