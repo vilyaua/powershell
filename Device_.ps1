@@ -1,17 +1,8 @@
-class Device_ {
-    [string]$Brand = 6
-    [string]$Model = 8
-    [string]$VendorSku = 12
-}
+# Get-Service | Where-Object { $_.Status -eq "running" } | Select-Object -last 10
+# Start-Sleep -s 1
+# Get-Service | Where-Object { $_.Status -eq "stopped" } | Select-Object -last 10
+# $Shell = New-Object -ComObject "WScript.Shell"
+# $Button = $Shell.PopUp("Click OK to continue.", 0, "Hello", 0)
+# Clear-Host
 
-class Rack_ {
-    [string]$Brand = 1
-    [string]$Model = 2
-    [string]$VendorSku = 2
-    [string]$AssetId = 5
-    [Device_[]]$Devices = [Device_[]]::new(8)
-}
-
-$rack_ = [Rack_]::new()
-$rack_.Devices[0] = [Device_]::new()
-$rack_ | Format-Table
+Get-WmiObject -Class Win32_OperatingSystem -ComputerName localhost | Select-Object -Property CSName,FreeVirtualMemory
