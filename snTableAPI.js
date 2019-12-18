@@ -22,7 +22,6 @@ let response = "";
 // As Andrii said, replaced above the request itself
 request.onload = function() {
     response = JSON.parse(request.responseText);
-    //console.log(JSON.stringify(response.result[0], null, '\t'));
     response.result.forEach(element => {
         console.log(JSON.stringify(element, null, '\t'));
     });
