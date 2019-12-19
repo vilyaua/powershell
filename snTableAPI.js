@@ -20,6 +20,11 @@ var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 let getSysIdByEmail = new XMLHttpRequest();
 
 let response = "";
+
+function nicePrint(jsonObject) {
+
+}
+
 // As Andrii said, replaced above the request itself
 getSysIdByEmail.onload = function() {
     response = JSON.parse(getSysIdByEmail.responseText);
