@@ -16,6 +16,7 @@ const sysId2FindChangeRequest = "9ee1b13dc6112271007f9d0efdb69cd0";
 let fields2ReturnChangeRequest = "number,short_description,sys_created_on,opened_by";
 
 var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+
 let request = new XMLHttpRequest();
 
 let response = "";
@@ -28,7 +29,7 @@ request.onload = function() {
     console.log("Output Finished")
 }
 
-/*
+
 // Request for sys_id by email
 // Prepare request data
 let sysparmQuery = "sysparm_query=email=" + email2Find;
@@ -36,25 +37,27 @@ let sysparmFields = "sysparm_fields=" + fields2Return;
 // Request
 request.open('GET', _INSTANCE + 'sys_user' + '?' + sysparmQuery + '&' + sysparmFields, false, _USER_ID, _PASSWORD);
 request.send();
-*/
+
 
 /*
 // Request for Incidents by creator's sys_id
 // Prepare request data
 let sysparmQueryIncident = "sysparm_query=opened_by=" + sysId2FindIncident;
 let sysparmFieldsIncident = "sysparm_fields=" + fields2ReturnIncident;
+// Request
 request.open('GET', _INSTANCE + 'incident' + '?' + sysparmQueryIncident + '&' + sysparmFieldsIncident, true, _USER_ID, _PASSWORD);
 request.send();
 */
 
-
+/*
 // Request for ChangeRequests by creator's sys_id
 // Prepare request data
 let sysparmQueryChangeRequest = "sysparm_query=opened_by=" + sysId2FindChangeRequest;
 let sysparmFieldsChangeRequest = "sysparm_fields=" + fields2ReturnChangeRequest;
+// Request
 request.open('GET', _INSTANCE + 'change_request' + '?' + sysparmQueryChangeRequest + '&' + sysparmFieldsChangeRequest, true, _USER_ID, _PASSWORD);
 request.send();
-
+*/
 
 // ?Doesn't work - WHY?
 // const sn=require("servicenow-rest-api");
