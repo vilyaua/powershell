@@ -17,27 +17,25 @@ let fields2ReturnChangeRequest = "number,short_description,sys_created_on,opened
 
 var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
-let request = new XMLHttpRequest();
+let getSysIdByEmail = new XMLHttpRequest();
 
 let response = "";
 // As Andrii said, replaced above the request itself
-request.onload = function() {
-    response = JSON.parse(request.responseText);
+getSysIdByEmail.onload = function() {
+    response = JSON.parse(getSysIdByEmail.responseText);
     response.result.forEach(element => {
         console.log(JSON.stringify(element, null, '\t'));
     });
-    console.log("Output Finished")
+    console.log("Output Finished");
 }
-
 
 // Request for sys_id by email
 // Prepare request data
 let sysparmQuery = "sysparm_query=email=" + email2Find;
 let sysparmFields = "sysparm_fields=" + fields2Return;
 // Request
-request.open('GET', _INSTANCE + 'sys_user' + '?' + sysparmQuery + '&' + sysparmFields, false, _USER_ID, _PASSWORD);
-request.send();
-
+getSysIdByEmail.open('GET', _INSTANCE + 'sys_user' + '?' + sysparmQuery + '&' + sysparmFields, false, _USER_ID, _PASSWORD);
+getSysIdByEmail.send();
 
 /*
 // Request for Incidents by creator's sys_id
@@ -45,8 +43,8 @@ request.send();
 let sysparmQueryIncident = "sysparm_query=opened_by=" + sysId2FindIncident;
 let sysparmFieldsIncident = "sysparm_fields=" + fields2ReturnIncident;
 // Request
-request.open('GET', _INSTANCE + 'incident' + '?' + sysparmQueryIncident + '&' + sysparmFieldsIncident, true, _USER_ID, _PASSWORD);
-request.send();
+getSysIdByEmail.open('GET', _INSTANCE + 'incident' + '?' + sysparmQueryIncident + '&' + sysparmFieldsIncident, true, _USER_ID, _PASSWORD);
+getSysIdByEmail.send();
 */
 
 /*
@@ -55,8 +53,8 @@ request.send();
 let sysparmQueryChangeRequest = "sysparm_query=opened_by=" + sysId2FindChangeRequest;
 let sysparmFieldsChangeRequest = "sysparm_fields=" + fields2ReturnChangeRequest;
 // Request
-request.open('GET', _INSTANCE + 'change_request' + '?' + sysparmQueryChangeRequest + '&' + sysparmFieldsChangeRequest, true, _USER_ID, _PASSWORD);
-request.send();
+getSysIdByEmail.open('GET', _INSTANCE + 'change_request' + '?' + sysparmQueryChangeRequest + '&' + sysparmFieldsChangeRequest, true, _USER_ID, _PASSWORD);
+getSysIdByEmail.send();
 */
 
 // ?Doesn't work - WHY?
