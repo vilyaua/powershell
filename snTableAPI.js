@@ -23,23 +23,23 @@ function tableRequestBuilder(host, table) {
 
     this.setHost = function(host) {
         this.host = host;
-    }
+    };
 
     this.setMethod = function(method) {
         this.method = method;
-    }
+    };
 
     this.addMethod = function(method) {
         this.method = method;
-    }
+    };
 
     this. addParameter = function(key, value) {
-        this.parameter = 
-    }
+        this.parameters.key = value;
+    };
 
     this.addField = function(fieldName) {
-        this.fields.push()
-    }
+        this.fields.push(fieldName);
+    };
 
     this.createRequest = function() {
         // TODO
@@ -51,7 +51,7 @@ function tableRequestBuilder(host, table) {
         this.fields = [];
         */
         return rp(options);
-    }
+    };
 }
 
 // Output JSON object
