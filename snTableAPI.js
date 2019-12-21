@@ -1,32 +1,76 @@
 var rp = require('request-promise');
 var Bluebird = require('bluebird');
-var writeJsonFile = require('write-json-file');
+var fs = require('fs');
  
 // Predefined request data
 function createRequestOptions(requestParams) {
     return {
         method: 'GET',
-        uri: 'https://dev61355.service-now.com/api/now/table/' + requestParams,
+        uri: 'https://dev62099.service-now.com//api/now/table/' + requestParams,
         auth: {
             'user': 'admin',
-            'pass': 'Id0U9SXjptgI'
+            'pass': 'kk67HuDifOMC'
           }
     };
 };
- 
+
+function tableRequestBuilder(host, table) {
+    this.method;
+    this.host;
+    this.table;
+    this.parameters = [];
+    this.fields = [];
+
+    this.setHost = function(host) {
+        this.host = host;
+    }
+
+    this.setMethod = function(method) {
+        this.method = method;
+    }
+
+    this.addMethod = function(method) {
+        this.method = method;
+    }
+
+    this. addParameter = function(key, value) {
+        this.parameter = 
+    }
+
+    this.addField = function(fieldName) {
+        this.fields.push()
+    }
+
+    this.createRequest = function() {
+        // TODO
+        /*
+        this.method;
+        this.host;
+        this.table;
+        this.parameters = {};
+        this.fields = [];
+        */
+        return rp(options);
+    }
+}
+
 // Output JSON object
 function printJsonObject(jsonObject, dataName) {
     console.log(dataName + ":");
     jsonObject.forEach(element => {
         console.log(JSON.stringify(element, null, '\t'));
     });
-}
+};
  
 // function printJsonObject({userData, incidentData, changeRequestData}) {
 //     //TODO to File
-//     writeJsonFile('allData.json', {userData, incidentData, changeRequestData});
-// }
- 
+// function printJsonObject(userData, incidentData, changeRequestsData) {
+//     fs.writeFile('resultData.json', 'Hello content!', function (err) {
+//     if (err) throw err;
+//     console.log('Saved!');
+//     });
+// };
+
 // Leave any sample below uncommented to find data by this particular Email
 //const userEmail = "don.goodliffe@example.com"; //9ee1b13dc6112271007f9d0efdb69cd0
 const userEmail = "guest@example.com"; //5136503cc611227c0183e96598c4f706
@@ -47,8 +91,9 @@ var getUserByEmail = rp(createRequestOptions('sys_user?' + sysparmQuery + '&' + 
 getUserByEmail
     .then(function (userData) {
         // Getting sys_id for further processing
-        var sysId = (JSON.parse(userData)).result[0].sys_id;
-        printJsonObject(JSON.parse(userData).result, "user");
+        var user = JSON.parse(userData).result;
+        var sysId = user[0].sys_id;
+        printJsonObject(user, "User");
         
         // Defining fields to get on response
         var incidentFields = "number,short_description,sys_created_on,opened_by";
@@ -67,10 +112,14 @@ getUserByEmail
         // Starting 2 requests in syncronous mode
         Bluebird.all([getIncidentByUserSysId, getChangeRequestByUserSysId])
             .spread(function(incidentData, changeRequestData) {
-                printJsonObject(JSON.parse(incidentData).result, "incidentData");
-                printJsonObject(JSON.parse(changeRequestData).result, "changeRequestData");
+                
+                var incidents = JSON.parse(incidentData).result;
+                printJsonObject(incidents, "Incidents");
+                
+                var changeRequests = JSON.parse(changeRequestData).result
+                printJsonObject(changeRequests, "ChangeRequests");
  
-                writeJsonFile('allData.json', {userData, incidentData, changeRequestData});
+                //writeJsonFile('allData.json', {userData, incidentData, changeRequestData});
             })
             .catch(function(err) {
                 console.error(err);
