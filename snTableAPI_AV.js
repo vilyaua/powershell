@@ -19,6 +19,8 @@ function printJsonObject(jsonObject, dataName) {
     jsonObject.forEach(element => {
         console.log(JSON.stringify(element, null, '\t'));
     });
+    //TODO Concate
+    //TODO FileWrite
 }
  
 // Leave any sample below uncommented to find data by this particular Email
@@ -63,8 +65,6 @@ getUserByEmail
             .spread(function(incidentData, changeRequestData) {
                 printJsonObject(JSON.parse(incidentData).result, "incidentData");
                 printJsonObject(JSON.parse(changeRequestData).result, "changeRequestData");
-                //TODO Concate
-                //TODO FileWrite
             })
             .catch(function(err) {
                 console.error(err);
