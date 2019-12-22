@@ -14,11 +14,11 @@ function createRequestOptions(requestParams) {
     };
 };
 
-function tableRequestBuilder(host, table) {
+function tableApiRequestBuilder(host, table) {
     this.method;
     this.host;
     this.table;
-    this.parameters = [];
+    this.filters = {};
     this.fields = [];
 
     this.setHost = function(host) {
@@ -29,12 +29,16 @@ function tableRequestBuilder(host, table) {
         this.method = method;
     };
 
+    this.setTable = function(table) {
+        this.table = table;
+    };
+
     this.addMethod = function(method) {
         this.method = method;
     };
 
-    this. addParameter = function(key, value) {
-        this.parameters.key = value;
+    this. addFilter = function(key, value) {
+        this.filters.key = value;
     };
 
     this.addField = function(fieldName) {
@@ -50,9 +54,50 @@ function tableRequestBuilder(host, table) {
         this.parameters = {};
         this.fields = [];
         */
-        return rp(options);
+       return rp(options);
     };
+};
+
+function createUserRequest () {
+    var userRequestBuilder = new tableApiRequestBuilder();
+    userRequestBuilder.setHost('https://dev62099.service-now.com//api/now/table/');
+    userRequestBuilder.setMethod('GET');
+    userRequestBuilder.setTable('sys_user');
+    userRequestBuilder.addField('');
+    userRequestBuilder.addField('');
+    userRequestBuilder.addField('');
+    return userRequest;
 }
+
+function createIncidentsRequest () {
+    var userRequestBuilder = new tableApiRequestBuilder();
+    userRequestBuilder.setHost('https://dev62099.service-now.com//api/now/table/');
+    userRequestBuilder.setMethod('GET');
+    userRequestBuilder.setTable('incident');
+    userRequestBuilder.addField('');
+    userRequestBuilder.addField('');
+    userRequestBuilder.addField('');
+    return userRequest;
+}
+
+function createChangeRequestsRequest () {
+    var userRequestBuilder = new tableApiRequestBuilder();
+    userRequestBuilder.setHost('https://dev62099.service-now.com//api/now/table/');
+    userRequestBuilder.setMethod('GET');
+    userRequestBuilder.setTable('change_request');
+    userRequestBuilder.addField('');
+    userRequestBuilder.addField('');
+    userRequestBuilder.addField('');
+    return userRequest;
+}
+
+var userRequest = new userRequestBuilder.createRequest();
+var incidentsRequest = new userRequestBuilder.createRequest();
+var changeRequestsRequest = new userRequestBuilder.createRequest();
+
+userRequest
+
+
 
 // Output JSON object
 function printJsonObject(jsonObject, dataName) {
