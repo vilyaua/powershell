@@ -1,62 +1,7 @@
 var rp = require('request-promise');
 var Bluebird = require('bluebird');
 var fs = require('fs');
- 
-// Predefined request data
-function createRequestOptions(requestParams) {
-    return {
-        method: 'GET',
-        uri: 'https://dev62099.service-now.com//api/now/table/' + requestParams,
-        auth: {
-            'user': 'admin',
-            'pass': 'kk67HuDifOMC'
-          }
-    };
-};
-
-function tableApiRequestBuilder(host, table) {
-    this.method;
-    this.host;
-    this.table;
-    this.filters = {};
-    this.fields = [];
-
-    this.setHost = function(host) {
-        this.host = host;
-    };
-
-    this.setMethod = function(method) {
-        this.method = method;
-    };
-
-    this.setTable = function(table) {
-        this.table = table;
-    };
-
-    this.addMethod = function(method) {
-        this.method = method;
-    };
-
-    this. addFilter = function(key, value) {
-        this.filters.key = value;
-    };
-
-    this.addField = function(fieldName) {
-        this.fields.push(fieldName);
-    };
-
-    this.createRequest = function() {
-        // TODO
-        /*
-        this.method;
-        this.host;
-        this.table;
-        this.parameters = {};
-        this.fields = [];
-        */
-       return rp(options);
-    };
-};
+var tableApiRequestBuilder = require('./tableApiRequestBuilder');
 
 function createUserRequest () {
     var userRequestBuilder = new tableApiRequestBuilder();
@@ -91,13 +36,21 @@ function createChangeRequestsRequest () {
     return userRequest;
 }
 
+// Predefined request data
+function createRequestOptions(requestParams) {
+    return {
+        method: 'GET',
+        uri: 'https://dev62099.service-now.com//api/now/table/' + requestParams,
+        auth: {
+            'user': 'admin',
+            'pass': 'kk67HuDifOMC'
+          }
+    };
+};
+
 var userRequest = new userRequestBuilder.createRequest();
 var incidentsRequest = new userRequestBuilder.createRequest();
 var changeRequestsRequest = new userRequestBuilder.createRequest();
-
-userRequest
-
-
 
 // Output JSON object
 function printJsonObject(jsonObject, dataName) {
@@ -173,3 +126,18 @@ getUserByEmail
     .catch(function (err) {
         console.error(err);
     });
+
+/*     var result = {
+        "email": "some@email",
+        ... ,
+        "incidents:" [
+            {},
+            {},
+            {},
+        ]
+        "changeRequests:" [
+            {},
+            {},
+            {},
+        ]
+    } */
