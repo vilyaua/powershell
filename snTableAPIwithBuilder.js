@@ -8,9 +8,11 @@ function createUserRequest () {
     userRequestBuilder.setHost('https://dev62099.service-now.com//api/now/table/');
     userRequestBuilder.setMethod('GET');
     userRequestBuilder.setTable('sys_user');
-    userRequestBuilder.addField('');
-    userRequestBuilder.addField('');
-    userRequestBuilder.addField('');
+    userRequestBuilder.addFilter('email', userEmail);
+    userRequestBuilder.addField('name');
+    userRequestBuilder.addField('user_name');
+    userRequestBuilder.addField('email');
+    userRequestBuilder.addField('sys_id');
     return userRequest;
 }
 
@@ -19,9 +21,11 @@ function createIncidentsRequest () {
     userRequestBuilder.setHost('https://dev62099.service-now.com//api/now/table/');
     userRequestBuilder.setMethod('GET');
     userRequestBuilder.setTable('incident');
-    userRequestBuilder.addField('');
-    userRequestBuilder.addField('');
-    userRequestBuilder.addField('');
+    userRequestBuilder.addFilter('opened_by', sysId);
+    userRequestBuilder.addField('number');
+    userRequestBuilder.addField('short_description');
+    userRequestBuilder.addField('sys_created_on');
+    userRequestBuilder.addField('opened_by');
     return userRequest;
 }
 
@@ -30,9 +34,11 @@ function createChangeRequestsRequest () {
     userRequestBuilder.setHost('https://dev62099.service-now.com//api/now/table/');
     userRequestBuilder.setMethod('GET');
     userRequestBuilder.setTable('change_request');
-    userRequestBuilder.addField('');
-    userRequestBuilder.addField('');
-    userRequestBuilder.addField('');
+    userRequestBuilder.addFilter('opened_by', sysId);
+    userRequestBuilder.addField('number');
+    userRequestBuilder.addField('short_description');
+    userRequestBuilder.addField('sys_created_on');
+    userRequestBuilder.addField('opened_by');
     return userRequest;
 }
 
@@ -47,6 +53,10 @@ function createRequestOptions(requestParams) {
           }
     };
 };
+
+var userRequest = new userRequestBuilder.createRequest();
+var incidentsRequest = new userRequestBuilder.createRequest();
+var changeRequestsRequest = new userRequestBuilder.createRequest();
 
 // Output JSON object
 function printJsonObject(jsonObject, dataName) {
