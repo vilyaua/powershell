@@ -1,5 +1,0 @@
-{
-	"userData": "{\"result\":[{\"sys_id\":\"5136503cc611227c0183e96598c4f706\",\"user_name\":\"guest\",\"name\":\"Guest\",\"email\":\"guest@example.com\"}]}",
-	"incidentData": "{\"result\":[{\"number\":\"INC0000006\",\"short_description\":\"Hangs when trying to print VISIO document\",\"opened_by\":{\"link\":\"https://dev61355.service-now.com/api/now/table/sys_user/5136503cc611227c0183e96598c4f706\",\"value\":\"5136503cc611227c0183e96598c4f706\"},\"sys_created_on\":\"2018-04-08 20:42:01\"}]}",
-	"changeRequestData": "{\"result\":[{\"number\":\"CHG0000002\",\"short_description\":\"Switch Sales over to the new 555 prefix\\n        \",\"opened_by\":{\"link\":\"https://dev61355.service-now.com/api/now/table/sys_user/5136503cc611227c0183e96598c4f706\",\"value\":\"5136503cc611227c0183e96598c4f706\"},\"sys_created_on\":\"2017-10-15 22:40:25\"},{\"number\":\"CHG0000006\",\"short_description\":\"Put another 100 Gb drive on the 2nd Floor Server\\n        \",\"opened_by\":{\"link\":\"https://dev61355.service-now.com/api/now/table/sys_user/5136503cc611227c0183e96598c4f706\",\"value\":\"5136503cc611227c0183e96598c4f706\"},\"sys_created_on\":\"2017-10-15 22:37:58\"}]}"
-}
