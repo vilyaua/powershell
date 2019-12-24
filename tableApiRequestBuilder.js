@@ -1,9 +1,10 @@
-function tableApiRequestBuilder(host, table) {
-    this.method;
-    this.host;
+function tableApiRequestBuilder() {
+    this.method = 'GET';
+    this.host = 'https://dev62099.service-now.com/api/now/table/';
     this.table;
     this.filters = {};
     this.fields = [];
+    this.auth = { 'user': 'admin', 'pass': 'kk67HuDifOMC' };
 
     this.setHost = function(host) {
         this.host = host;
@@ -21,8 +22,9 @@ function tableApiRequestBuilder(host, table) {
         this.method = method;
     };
 
-    this. addFilter = function(key, value) {
-        this.filters.key = value;
+    this.addFilter = function(key, value) {
+        this.filters.key = key;
+        this.filters.value = value;
     };
 
     this.addField = function(fieldName) {
@@ -30,15 +32,12 @@ function tableApiRequestBuilder(host, table) {
     };
 
     this.createRequest = function() {
-        // TODO
-        /*
         this.method;
         this.host;
         this.table;
         this.parameters = {};
         this.fields = [];
-        */
-       return rp(options);
+        return rp(options);
     };
 };
 

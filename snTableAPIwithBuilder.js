@@ -1,149 +1,83 @@
-var rp = require('request-promise');
-var Bluebird = require('bluebird');
+var Bluebird = require('bluebird')
 var fs = require('fs');
-var tableApiRequestBuilder = require('./tableApiRequestBuilder');
+var TableApiRequestBuilder = require('./TableApiRequestBuilder');
+
+function RequestManager(builder) {
+    this.createRequest =  function () {
+        builder.createRequest();
+        builder.addHost();
+        builder.setTable();
+        builder.setFilter();
+    };
+
+    this.getRequest = function () {
+       var result =  builder.getRequest();
+
+       return result;
+    };
+}
+
+function UserRequestBuilder(adsfadsf,asdfadsf) {
+    var request;
+    this.setTable = function (email, email,email) {
+       require.table = email;
+     };
+     this.setTable = function(){
+        require.table = 'sys_user';
+     };
+     this.setFilter = function () {
+        require.filter = 'email';
+      };
+}
+
+var a = new UserRequestBuilder('adsfdsafa', 'adsfadsf', 'afdsdsaf');
+var b = new RequestManager(a);
+b.createRequest();
+b.getRequest();
+
+
+
 
 function createUserRequest () {
-    var userRequestBuilder = new tableApiRequestBuilder();
-    userRequestBuilder.setHost('https://dev62099.service-now.com//api/now/table/');
-    userRequestBuilder.setMethod('GET');
-    userRequestBuilder.setTable('sys_user');
-    userRequestBuilder.addFilter('email', userEmail);
-    userRequestBuilder.addField('name');
-    userRequestBuilder.addField('user_name');
-    userRequestBuilder.addField('email');
-    userRequestBuilder.addField('sys_id');
-    return userRequest;
+    var userBuilder = new tableApiRequestBuilder();
+    userBuilder.setHost('https://dev62099.service-now.com//api/now/table/');
+    userBuilder.setMethod('GET');
+    userBuilder.setTable('sys_user');
+    userBuilder.addFilter('email', userEmail);
+    userBuilder.addField('name');
+    userBuilder.addField('user_name');
+    userBuilder.addField('email');
+    userBuilder.addField('sys_id');
+    return userBuilder.createRequest;
 }
 
 function createIncidentsRequest () {
-    var userRequestBuilder = new tableApiRequestBuilder();
-    userRequestBuilder.setHost('https://dev62099.service-now.com//api/now/table/');
-    userRequestBuilder.setMethod('GET');
-    userRequestBuilder.setTable('incident');
-    userRequestBuilder.addFilter('opened_by', sysId);
-    userRequestBuilder.addField('number');
-    userRequestBuilder.addField('short_description');
-    userRequestBuilder.addField('sys_created_on');
-    userRequestBuilder.addField('opened_by');
-    return userRequest;
+    var incdentBuilder = new tableApiRequestBuilder();
+    incdentBuilder.setHost('https://dev62099.service-now.com//api/now/table/');
+    incdentBuilder.setMethod('GET');
+    incdentBuilder.setTable('incident');
+    incdentBuilder.addFilter('opened_by', sysId);
+    incdentBuilder.addField('number');
+    incdentBuilder.addField('short_description');
+    incdentBuilder.addField('sys_created_on');
+    incdentBuilder.addField('opened_by');
+    return incdentBuilder.createRequest;
 }
 
 function createChangeRequestsRequest () {
-    var userRequestBuilder = new tableApiRequestBuilder();
-    userRequestBuilder.setHost('https://dev62099.service-now.com//api/now/table/');
-    userRequestBuilder.setMethod('GET');
-    userRequestBuilder.setTable('change_request');
-    userRequestBuilder.addFilter('opened_by', sysId);
-    userRequestBuilder.addField('number');
-    userRequestBuilder.addField('short_description');
-    userRequestBuilder.addField('sys_created_on');
-    userRequestBuilder.addField('opened_by');
-    return userRequest;
+    var changeRequestBuilder = new tableApiRequestBuilder();
+    changeRequestBuilder.setHost('https://dev62099.service-now.com//api/now/table/');
+    changeRequestBuilder.setMethod('GET');
+    changeRequestBuilder.setTable('change_request');
+    changeRequestBuilder.addFilter('opened_by', sysId);
+    changeRequestBuilder.addField('number');
+    changeRequestBuilder.addField('short_description');
+    changeRequestBuilder.addField('sys_created_on');
+    changeRequestBuilder.addField('opened_by');
+    return changeRequestBuilder.createRequest();
 }
-
-// Predefined request data
-function createRequestOptions(requestParams) {
-    return {
-        method: 'GET',
-        uri: 'https://dev62099.service-now.com//api/now/table/' + requestParams,
-        auth: {
-            'user': 'admin',
-            'pass': 'kk67HuDifOMC'
-          }
-    };
-};
 
 var userRequest = new userRequestBuilder.createRequest();
 var incidentsRequest = new userRequestBuilder.createRequest();
 var changeRequestsRequest = new userRequestBuilder.createRequest();
 
-// Output JSON object
-function printJsonObject(jsonObject, dataName) {
-    console.log(dataName + ":");
-    jsonObject.forEach(element => {
-        console.log(JSON.stringify(element, null, '\t'));
-    });
-};
- 
-// function printJsonObject({userData, incidentData, changeRequestData}) {
-//     //TODO to File
-// function printJsonObject(userData, incidentData, changeRequestsData) {
-//     fs.writeFile('resultData.json', 'Hello content!', function (err) {
-//     if (err) throw err;
-//     console.log('Saved!');
-//     });
-// };
-
-// Leave any sample below uncommented to find data by this particular Email
-//const userEmail = "don.goodliffe@example.com"; //9ee1b13dc6112271007f9d0efdb69cd0
-const userEmail = "guest@example.com"; //5136503cc611227c0183e96598c4f706
-//const userEmail = "itil@example.com"; //681b365ec0a80164000fb0b05854a0cd
-//const userEmail = "admin@example.com"; //6816f79cc0a8016401c5a33be04be4
- 
-// Defining fields to get on response
-var userFields = "name,user_name,email,sys_id";
- 
-// Request for sys_id by email
-// Prepare request data
-var sysparmQuery = "sysparm_query=email=" + userEmail;
-var sysparmFields = "sysparm_fields=" + userFields;
-// Request
-var getUserByEmail = rp(createRequestOptions('sys_user?' + sysparmQuery + '&' + sysparmFields));
- 
-// Making the First Request - find user data by email
-getUserByEmail
-    .then(function (userData) {
-        // Getting sys_id for further processing
-        var user = JSON.parse(userData).result;
-        var sysId = user[0].sys_id;
-        printJsonObject(user, "User");
-        
-        // Defining fields to get on response
-        var incidentFields = "number,short_description,sys_created_on,opened_by";
-        var changeRequestFields = "number,short_description,sys_created_on,opened_by";
-        // Defining "opened_by" sys_id
-        var sysparmQueryInfo = "sysparm_query=opened_by=" + sysId;
- 
-        var sysparmIncidentFields = "sysparm_fields=" + incidentFields;
-        // Request
-        var getIncidentByUserSysId = rp(createRequestOptions('incident?' + sysparmQueryInfo + '&' + sysparmIncidentFields));
- 
-        var sysparmChangeRequestFields = "sysparm_fields=" + changeRequestFields;
-        // Request
-        var getChangeRequestByUserSysId = rp(createRequestOptions('change_request?' + sysparmQueryInfo + '&' + sysparmChangeRequestFields));
- 
-        // Starting 2 requests in syncronous mode
-        Bluebird.all([getIncidentByUserSysId, getChangeRequestByUserSysId])
-            .spread(function(incidentData, changeRequestData) {
-                
-                var incidents = JSON.parse(incidentData).result;
-                printJsonObject(incidents, "Incidents");
-                
-                var changeRequests = JSON.parse(changeRequestData).result
-                printJsonObject(changeRequests, "ChangeRequests");
- 
-                //writeJsonFile('allData.json', {userData, incidentData, changeRequestData});
-            })
-            .catch(function(err) {
-                console.error(err);
-            })
-        })
-    .catch(function (err) {
-        console.error(err);
-    });
-
-/*     var result = {
-        "email": "some@email",
-        ... ,
-        "incidents:" [
-            {},
-            {},
-            {},
-        ]
-        "changeRequests:" [
-            {},
-            {},
-            {},
-        ]
-    } */
