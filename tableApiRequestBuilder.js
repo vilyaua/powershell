@@ -1,3 +1,5 @@
+var rp = require('request-promise');
+
 function tableApiRequestBuilder() {
     this.method = 'GET';
     this.host = 'https://dev62099.service-now.com/api/now/table/';
@@ -31,12 +33,12 @@ function tableApiRequestBuilder() {
         this.fields.push(fieldName);
     };
 
-    this.createRequest = function() {
-        this.method;
-        this.host;
-        this.table;
-        this.parameters = {};
-        this.fields = [];
+    this.createRequest = function(options) {
+        var options = {
+            method: this.method,
+            uri: this.host + this.table + '?sysparm_query=' + this.filters.key + "=" + this.filters.value + '&sysparm_fields=' + this.fields.join(','),
+            auth: this.auth
+        }
         return rp(options);
     };
 };
