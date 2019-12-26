@@ -33,7 +33,7 @@ function tableApiRequestBuilder() {
         this.fields.push(fieldName);
     };
 
-    this.createRequest = function(options) {
+    this.createRequest = function() {
         var options = {
             method: this.method,
             uri: this.host + this.table + '?sysparm_query=' + this.filters.key + "=" + this.filters.value + '&sysparm_fields=' + this.fields.join(','),
