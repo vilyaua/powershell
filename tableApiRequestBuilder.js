@@ -58,17 +58,19 @@ function tableApiRequestBuilder() {
 
         this.header['Accept'] = 'application/json';
         if (this.method !== 'GET') {
-            this.header['Content'] = 'application/json';
+            this.header['Content-Type'] = 'application/json';
         }
 
         var options = {
             method: this.method,
             uri: this.host + this.table + sysparmQuery + sysparmFields,
             auth: this.auth,
-            headers: this.header,
+            header: this.header,
             data: this.data
         }
-        return rp(options);
+        var result = rp(options);
+        console.log(result);
+        return result;
     };
 };
 

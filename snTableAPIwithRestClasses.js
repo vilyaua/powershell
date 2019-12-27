@@ -15,6 +15,7 @@ const userEmail = "itil@example.com"; //681b365ec0a80164000fb0b05854a0cd
 var userInitData = {
     email: "testerrr@email.com",
     mobile_phone: "+380676360948",
+    user_name: "Vitalii Perminov",
     country: "Ukraine"
 }
 
