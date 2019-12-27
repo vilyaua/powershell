@@ -1,24 +1,45 @@
 var tableApiRequestBuilder = require('./TableApiRequestBuilder');
 
 function restApiClientUser() {
-    this.host;
-    this.user;
-    this.pass;
+    this.host = 'https://dev62099.service-now.com/api/now/table/';
+    this.table = 'sys_user';
+    this.user = 'admin';
+    this.pass = 'kk67HuDifOMC';
 
-    this.createUser = function() {
-
+    this.setHost = function(host) {
+        this.host = host;
     }
 
-    this.updateUser = function() {
-
+    this.setUser = function(user) {
+        this.user = user;
     }
 
-    this.getUserById = function() {
-
+    this.setPass = function(pass) {
+        this.pass = pass;
     }
 
-    this.deleteUserById = function() {
+    this.createUser = function(userInitData) {
+        var userBuilder = new tableApiRequestBuilder();
+        userBuilder.setMethod('POST');
+        userBuilder.setHost(this.host);
+        userBuilder.setTable(this.table);
+        userBuilder.setAuth(this.user, this.pass);
+        userBuilder.setData(userInitData);
+        return userBuilder.createRequest();
+    }
 
+    this.updateUser = function(sysId) {
+        //TODO
+    }
+
+    this.getUserById = function(sysId) {
+        //TODO
+    }
+
+    this.deleteUserById = function(sysId) {
+        //TODO
     }
 
 }
+
+module.exports = restApiClientUser;
