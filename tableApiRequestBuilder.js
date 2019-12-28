@@ -8,7 +8,7 @@ function tableApiRequestBuilder() {
     this.fields = [];
     this.auth = { 'user': 'admin', 'pass': 'kk67HuDifOMC' };
     this.header = {};
-    this.data = [];
+    this.body = {};
 
     this.setHost = function(host) {
         this.host = host;
@@ -27,9 +27,9 @@ function tableApiRequestBuilder() {
         this.auth['pass'] = pass
     };
 
-    this.setData = function(userInitialData) {
-        this.data = userInitialData;
-    }
+    this.setBody = function(userInitData) {
+        this.body = userInitData;
+    };
 
     this.addMethod = function(method) {
         this.method = method;
@@ -66,11 +66,13 @@ function tableApiRequestBuilder() {
             uri: this.host + this.table + sysparmQuery + sysparmFields,
             auth: this.auth,
             header: this.header,
-            data: this.data
+            body: this.body,
+            json: true
         }
-        var result = rp(options);
+        /* var result = rp(options);
         console.log(result);
-        return result;
+        return result; */
+        return rp(options)
     };
 };
 

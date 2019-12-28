@@ -6,16 +6,10 @@ var restApiClientUser = require('./restApiClientUser');
 const userEmail = "itil@example.com"; //681b365ec0a80164000fb0b05854a0cd
 //const userEmail = "admin@example.com"; //6816f79cc0a8016401c5a33be04be4
 
-/* var userInitData = {
-    'email': 'testerrr@email.com',
-    'mobile_phone': '+380676360948',
-    'country': 'Ukraine'
-} */
-
 var userInitData = {
-    email: "testerrr@email.com",
+    user_name: "Vilya", // This field needs to be unique
+    email: "atLast@email.com",
     mobile_phone: "+380676360948",
-    user_name: "Vitalii Perminov",
     country: "Ukraine"
 }
 

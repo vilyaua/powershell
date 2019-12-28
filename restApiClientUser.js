@@ -24,12 +24,18 @@ function restApiClientUser() {
         userBuilder.setHost(this.host);
         userBuilder.setTable(this.table);
         userBuilder.setAuth(this.user, this.pass);
-        userBuilder.setData(userInitData);
+        userBuilder.setBody(userInitData);
         return userBuilder.createRequest();
     }
 
     this.updateUser = function(sysId) {
-        //TODO
+        var userUpdater = new tableApiRequestBuilder();
+        userUpdater.setMethod('PUT');
+        userUpdater.setHost(this.host);
+        userUpdater.setTable(this.table);
+        userUpdater.setAuth(this.user, this.pass);
+        userUpdater.setBody(userInitData);
+        return userUpdater.createRequest();
     }
 
     this.getUserById = function(sysId) {
