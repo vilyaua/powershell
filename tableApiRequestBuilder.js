@@ -69,9 +69,6 @@ function tableApiRequestBuilder() {
             body: this.body,
             json: true
         }
-        /* var result = rp(options);
-        console.log(result);
-        return result; */
         return rp(options)
     };
 };

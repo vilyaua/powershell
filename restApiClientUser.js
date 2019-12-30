@@ -29,13 +29,7 @@ function restApiClientUser() {
     }
 
     this.updateUser = function(sysId) {
-        var userUpdater = new tableApiRequestBuilder();
-        userUpdater.setMethod('PUT');
-        userUpdater.setHost(this.host);
-        userUpdater.setTable(this.table);
-        userUpdater.setAuth(this.user, this.pass);
-        userUpdater.setBody(userInitData);
-        return userUpdater.createRequest();
+        //TODO
     }
 
     this.getUserById = function(sysId) {
@@ -45,7 +39,6 @@ function restApiClientUser() {
     this.deleteUserById = function(sysId) {
         //TODO
     }
-
 }
 
 module.exports = restApiClientUser;
