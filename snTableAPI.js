@@ -9,7 +9,7 @@ function createRequestOptions(requestParams) {
         uri: 'https://dev62099.service-now.com//api/now/table/' + requestParams,
         auth: {
             'user': 'admin',
-            'pass': 'kk67HuDifOMC'
+            'pass': '!Qaz2wsx'
           }
     };
 };

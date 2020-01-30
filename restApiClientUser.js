@@ -4,7 +4,7 @@ function restApiClientUser() {
     this.host = 'https://dev62099.service-now.com/api/now/table/';
     this.table = 'sys_user';
     this.user = 'admin';
-    this.pass = 'kk67HuDifOMC';
+    this.pass = '!Qaz2wsx';
 
     this.setHost = function(host) {
         this.host = host;

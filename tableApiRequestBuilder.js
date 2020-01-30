@@ -6,7 +6,7 @@ function tableApiRequestBuilder() {
     this.table;
     this.filters = {};
     this.fields = [];
-    this.auth = { 'user': 'admin', 'pass': 'kk67HuDifOMC' };
+    this.auth = { 'user': 'admin', 'pass': '!Qaz2wsx' };
     this.header = {};
     this.body = {};
 
